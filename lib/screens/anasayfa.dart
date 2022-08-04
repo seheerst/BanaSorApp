@@ -4,6 +4,7 @@ import 'package:bana_sor_app/screens/trending.dart';
 import 'package:bana_sor_app/screens/yeniler.dart';
 import 'package:flutter/material.dart';
 
+import '../widgets/DrawerMenu.dart';
 import 'add_entry.dart';
 import 'gundem.dart';
 
@@ -45,7 +46,7 @@ class _AnasayfaState extends State<Anasayfa>
                       color: Colors.white,
                     ),
                     border: InputBorder.none,
-                    hintText: 'search..',
+                    hintText: 'Ne Aramıştın...',
                     hintStyle: TextStyle(color: Colors.white)),
               ),
             ),
@@ -66,8 +67,8 @@ class _AnasayfaState extends State<Anasayfa>
         floatingActionButton: FloatingActionButton(
           backgroundColor: Sabitler.anaRenk,
           onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => AddEntryScreen()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => AddEntryScreen()));
           },
           child: const Icon(Icons.add),
         ),
@@ -77,8 +78,8 @@ class _AnasayfaState extends State<Anasayfa>
 
   TabBar tabBarWidget() {
     return TabBar(
-      
-      controller: tabController, tabs: const [
+        controller: tabController,
+        tabs: const [
       Tab(
         child: Text(
           'Trendler',
@@ -105,8 +106,5 @@ class _AnasayfaState extends State<Anasayfa>
       )
     ]);
   }
-
-  Widget DrawerMenu() {
-    return Drawer();
-  }
 }
+
