@@ -1,5 +1,5 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
-import 'package:bana_sor_app/screens/anasayfa.dart';
+import 'package:bana_sor_app/screens/LoginPage.dart';
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
@@ -20,7 +20,7 @@ class _splashScreenState extends State<SplashScreen> {
       const Duration(milliseconds:4500 ),
       () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) =>const Anasayfa()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       ),
     );
   }
