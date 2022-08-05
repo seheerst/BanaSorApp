@@ -1,25 +1,29 @@
-
+import 'package:bana_sor_app/screens/LoginPage.dart';
 import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/sabitler.dart';
 import '../screens/Profile.dart';
 
-class DrawerMenu extends StatelessWidget {
+class DrawerMenu extends StatefulWidget {
   const DrawerMenu({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<DrawerMenu> createState() => _DrawerMenuState();
+}
+
+class _DrawerMenuState extends State<DrawerMenu> {
+
+  @override
   Widget build(BuildContext context) {
     return Drawer(
-
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
-                color: Sabitler.anaRenk
-            ),
+            decoration: BoxDecoration(color: Sabitler.anaRenk),
             child: Row(
               children: const [
                 Icon(
@@ -43,8 +47,8 @@ class DrawerMenu extends StatelessWidget {
             leading: Icon(Icons.settings_outlined),
             title: Text('Ayarlar'),
             onTap: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => AppDrawer()));
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (context) => AppDrawer()));
             },
           ),
           ListTile(
@@ -55,7 +59,12 @@ class DrawerMenu extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Çıkış'),
-            onTap: () {},
+            onTap: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
+              });
+            },
           ),
         ],
       ),

@@ -1,5 +1,8 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
+
 import 'package:flutter/material.dart';
+
+
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -31,8 +34,6 @@ class _AppDrawerState extends State<AppDrawer> {
           ListTileWidget('Kullanım Koşulları'),
           ListTileWidget('İletişim'),
           ListTileWidget('Gizlilik Politikası'),
-          ListTileWidget('Çıkış'),
-
 
         ],
       )
@@ -40,12 +41,12 @@ class _AppDrawerState extends State<AppDrawer> {
   }
   ListTileWidget(String baslik){
       return ListTile(
+        onTap: (){},
 
         title: Text(baslik, style: TextStyle(fontSize: 20),),
-        trailing: IconButton(
-          icon: Icon(Icons.arrow_forward_ios,color: Sabitler.anaRenk,),
-          onPressed: (){},
-        )
+        trailing: Icon(Icons.arrow_forward_ios,color: Sabitler.anaRenk,),
+
+
       );
   }
 }
