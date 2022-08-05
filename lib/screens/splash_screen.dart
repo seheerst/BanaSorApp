@@ -17,26 +17,23 @@ class _splashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(
-      const Duration(milliseconds:4500 ),
+      const Duration(milliseconds: 4500),
       () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       color: Sabitler.ikinciRenk,
       child: const Center(
-            child:
-                Image(
-                  image: AssetImage('assets/images/logo1.png'),
-                  width: 400,
-                )
-          ),
+          child: Image(
+        image: AssetImage('assets/images/logo1.png'),
+        width: 400,
+      )),
     );
-    
   }
 }

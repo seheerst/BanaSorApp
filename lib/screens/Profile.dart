@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
+
 import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
 import 'package:bana_sor_app/widgets/ProfileAppbar.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +20,6 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   @override
   void initState() {
-  
     super.initState();
     tabController = TabController(length: 2, vsync: this);
   }
@@ -27,9 +28,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(300),
+        preferredSize: const Size.fromHeight(300),
         child: AppBar(
-
           backgroundColor: Colors.white,
           actions: [
             Builder(
@@ -50,30 +50,30 @@ class _ProfileScreenState extends State<ProfileScreen>
             ),
           ],
           bottom: TabBarim(),
-          flexibleSpace: ProfileAppbar(),
-          leading:  BackButton(
+          flexibleSpace: const ProfileAppbar(),
+          leading: BackButton(
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const Anasayfa()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Anasayfa()));
             },
             color: Sabitler.anaRenk,
           ),
         ),
       ),
-      endDrawer: AppDrawer(),
+      endDrawer: const AppDrawer(),
       body: TabBarView(
         controller: tabController,
-        children: [
-          Container(
-           child: Center(
-             child: Text('Henüz bir entry yayınlamadınız' , style: TextStyle(fontSize: 25,color:Sabitler.anaRenk),),
-           ),
+        children: const [
+          Center(
+            child: Text(
+              'Henüz bir entry yayınlamadınız',
+              style: TextStyle(fontSize: 25, color: Sabitler.anaRenk),
+            ),
           ),
-          Container(
-            child: Center(
-              child: Text('Burada gösterilecek birşey yok', style: TextStyle(fontSize: 25,color:Sabitler.anaRenk),),
+          Center(
+            child: Text(
+              'Burada gösterilecek birşey yok',
+              style: TextStyle(fontSize: 25, color: Sabitler.anaRenk),
             ),
           ),
         ],
@@ -82,14 +82,12 @@ class _ProfileScreenState extends State<ProfileScreen>
         backgroundColor: Sabitler.anaRenk,
         onPressed: () {
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => AddEntryScreen()));
+              MaterialPageRoute(builder: (context) => const AddEntryScreen()));
         },
         child: const Icon(Icons.add),
       ),
     );
   }
-
-
 
   TabBar TabBarim() {
     return TabBar(

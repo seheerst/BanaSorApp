@@ -1,8 +1,12 @@
-
-
+import 'package:bana_sor_app/screens/signInPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bana_sor_app/constants/sabitler.dart';
+import 'package:bana_sor_app/screens/anasayfa.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../widgets/TextField.dart';
+import '../widgets/login_siginButton.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,6 +17,16 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  late FirebaseAuth auth;
+
+  @override
+  void initState() {
+    super.initState();
+    auth = FirebaseAuth.instance;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +53,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: [
-                        loginTextField('E-mail'),
+                        loginTextField('E-mail', false, _emailTextController),
                         const SizedBox(
                           height: 15,
                         ),
-                        loginTextField('Şifre'),
+                        loginTextField('Şifre', true, _passwordTextController),
                         TextButton(
                           onPressed: () {},
                           child: const Align(
@@ -54,24 +68,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                     color: Sabitler.ikinciRenk, fontSize: 18),
                               )),
                         ),
-                        Container(
-                          width: 180,
-                          decoration: BoxDecoration(
-                              color: Sabitler.ikinciRenk,
-                              borderRadius: BorderRadius.circular(24)),
-                          child: TextButton(
-                              onPressed: () {},
-                              child: const Text(
-                                'Giriş Yap',
-                                style: TextStyle(
-                                    fontSize: 25, color: Sabitler.loginArka),
-                              )),
-                        ),
+                        fireBaseUIButton(context, 'Giriş Yap', () {
+                          FirebaseAuth.instance
+                              .signInWithEmailAndPassword(
+                                  email: _emailTextController.text,
+                                  password: _passwordTextController.text)
+                              .then((value) {
+                            debugPrint("Created New Account");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Anasayfa()));
+                          }).onError((error, stackTrace) {
+                            debugPrint("Error ${error.toString()}");
+                          });
+                        }),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const SignInScreen()));
+                            },
                             child: const Text(
                               'Hesabınız yok mu? Kayıt Olun',
-                              style:  TextStyle(
+                              style: TextStyle(
                                   color: Sabitler.ikinciRenk, fontSize: 18),
                             )),
                         // ignore: avoid_unnecessary_containers
@@ -87,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               ),
                               label: const Text(
                                 'Google ile giriş yap',
-                                style:  TextStyle(
+                                style: TextStyle(
                                     fontSize: 20, color: Sabitler.loginArka),
                               )),
                         ),
@@ -99,25 +121,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Container loginTextField(String text) {
-    return Container(
-      height: 70,
-      width: 400,
-      decoration: BoxDecoration(
-          color: Sabitler.ikinciRenk, borderRadius: BorderRadius.circular(24)),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 7.0, left: 10),
-        child: TextFormField(
-          inputFormatters: const [],
-          decoration: InputDecoration(
-              hintText: text,
-              hintStyle: const TextStyle(color: Sabitler.anaRenk, fontSize: 24),
-              border: InputBorder.none),
-        ),
       ),
     );
   }

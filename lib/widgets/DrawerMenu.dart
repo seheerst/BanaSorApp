@@ -16,14 +16,13 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(color: Sabitler.anaRenk),
+            decoration: const BoxDecoration(color: Sabitler.anaRenk),
             child: Row(
               children: const [
                 Icon(
@@ -36,33 +35,35 @@ class _DrawerMenuState extends State<DrawerMenu> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.person_outline),
-            title: Text('Profil'),
+            leading: const Icon(Icons.person_outline),
+            title: const Text('Profil'),
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ProfileScreen()));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings_outlined),
+            title: const Text('Ayarlar'),
             onTap: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  MaterialPageRoute(builder: (context) => const AppDrawer()));
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings_outlined),
-            title: Text('Ayarlar'),
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => AppDrawer()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.help_outline),
-            title: Text('Yardım'),
+            leading: const Icon(Icons.help_outline),
+            title: const Text('Yardım'),
             onTap: () {},
           ),
           ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Çıkış'),
+            leading: const Icon(Icons.exit_to_app),
+            title: const Text('Çıkış'),
             onTap: () {
               FirebaseAuth.instance.signOut().then((value) {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
               });
             },
           ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "89826584000",
+    "project_id": "banasorapp-23dea",
+    "storage_bucket": "banasorapp-23dea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:89826584000:android:1738c2885b7056afb7d425",
+        "android_client_info": {
+          "package_name": "com.example.bana_sor_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "89826584000-qgfhklvditm9g41vn1ublvqbc81oifr5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCytBGtWRe5jKlloYXanZzzrJEeFM3DGqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "89826584000-qgfhklvditm9g41vn1ublvqbc81oifr5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

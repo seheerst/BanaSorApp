@@ -10,9 +10,9 @@ class GundemScreen extends StatelessWidget {
       child: ListView(
         children: [
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -28,9 +28,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -46,9 +46,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -64,9 +64,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -82,9 +82,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -100,9 +100,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -118,9 +118,9 @@ class GundemScreen extends StatelessWidget {
             ),
           ),
           TextButton(
-            
             style: ButtonStyle(
-              minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 80)) ,
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 80)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(
                 const Size.fromWidth(50),
@@ -135,7 +135,6 @@ class GundemScreen extends StatelessWidget {
               ),
             ),
           ),
-        
         ],
       ),
     );

@@ -9,7 +9,8 @@ class KategoriScreen extends StatelessWidget {
       children: [
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -20,7 +21,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -31,7 +33,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -42,7 +45,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -53,7 +57,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -64,7 +69,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -75,30 +81,32 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
           child: const Text(
             'Siyaset',
-            style: TextStyle(
-              fontSize: 20),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
           child: const Text(
             'Teknoloji',
-            style:  TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -109,7 +117,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -120,7 +129,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -131,19 +141,20 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
           child: const Text(
             'Bilim',
-            style: TextStyle(
-              fontSize: 20),
+            style: TextStyle(fontSize: 20),
           ),
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -154,7 +165,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -165,7 +177,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -176,7 +189,8 @@ class KategoriScreen extends StatelessWidget {
         ),
         TextButton(
           style: ButtonStyle(
-            minimumSize:MaterialStateProperty.all(Size(MediaQuery.of(context).size.width, 60)),
+              minimumSize: MaterialStateProperty.all(
+                  Size(MediaQuery.of(context).size.width, 60)),
               backgroundColor: MaterialStateProperty.all(Colors.white),
               fixedSize: MaterialStateProperty.all(const Size.fromWidth(50))),
           onPressed: () {},
@@ -185,13 +199,7 @@ class KategoriScreen extends StatelessWidget {
             style: TextStyle(fontSize: 20),
           ),
         ),
-       
       ],
     );
-
   }
-  
 }
-
-
- 

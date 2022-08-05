@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../constants/sabitler.dart';
 
-Container loginTextField(String text , bool isPasswordType,TextEditingController controller) {
-
+Container loginTextField(
+    String text, bool isPasswordType, TextEditingController controller) {
   return Container(
     height: 70,
     width: 400,

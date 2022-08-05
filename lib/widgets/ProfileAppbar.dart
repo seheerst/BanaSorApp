@@ -7,91 +7,109 @@ class ProfileAppbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          child: Row(
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Container(
-                  width: 120,
-                  height: 120,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(90),
-                      image: DecorationImage(
-                          image: AssetImage('assets/images/pp.jpg'))),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 25, top: 80),
-                child: Container(
-                  width: 300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[
-                      const Text('Kullanıcı Adı',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15,bottom: 15),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children:[
-                            Column(
-                              children: const[
-                                Text(
-                                  '0',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-
-                                Text('entry',style: TextStyle(color: Colors.black45,fontSize: 17),),
-                              ],
+      padding: const EdgeInsets.all(20.0),
+      child: Row(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(90),
+                  image: const DecorationImage(
+                      image: AssetImage('assets/images/pp.jpg'))),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 25, top: 80),
+            child: SizedBox(
+              width: 300,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('Kullanıcı Adı',
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 15, bottom: 15),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: const [
+                            Text(
+                              '0',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            Column(
-                              children: const[
-                                Text(
-                                  '0',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-
-                                Text('entry',style: TextStyle(color: Colors.black45,fontSize: 17),),
-                              ],
+                            Text(
+                              'entry',
+                              style: TextStyle(
+                                  color: Colors.black45, fontSize: 17),
                             ),
-                            Column(
-                              children: const[
-                                Text(
-                                  '0',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-
-                                Text('entry',style: TextStyle(color: Colors.black45,fontSize: 17),),
-                              ],
-                            )
                           ],
                         ),
-                      ),
-                      Row(
-                        children: [
-                          IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.facebookF,color: Colors.black45,)),
-                          IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.twitter,color: Colors.black45,)),
-                          IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.instagram,color: Colors.black45,)),
-                        ],
-                      )
-                    ],
+                        Column(
+                          children: const [
+                            Text(
+                              '0',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'entry',
+                              style: TextStyle(
+                                  color: Colors.black45, fontSize: 17),
+                            ),
+                          ],
+                        ),
+                        Column(
+                          children: const [
+                            Text(
+                              '0',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              'entry',
+                              style: TextStyle(
+                                  color: Colors.black45, fontSize: 17),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              )
-            ],
-          ),
-        ),
-      );
-    }
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            FontAwesomeIcons.facebookF,
+                            color: Colors.black45,
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            FontAwesomeIcons.twitter,
+                            color: Colors.black45,
+                          )),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            FontAwesomeIcons.instagram,
+                            color: Colors.black45,
+                          )),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
-
+}

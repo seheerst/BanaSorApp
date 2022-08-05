@@ -27,19 +27,17 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                 children: [
                   Align(
                     alignment: Alignment.topLeft,
-                    child: Container(
-                      child: BackButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Anasayfa()));
-                        },
-                        color: Sabitler.anaRenk,
-                      ),
+                    child: BackButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Anasayfa()));
+                      },
+                      color: Sabitler.anaRenk,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Container(
@@ -49,13 +47,11 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                     height: 40,
                     child: Padding(
                       padding: const EdgeInsets.all(3.0),
-                      child: Container(
-                        child: TextFormField(
-                          decoration: const InputDecoration(
-                              hintText: 'Başlık...',
-                              hintStyle: TextStyle(color: Sabitler.anaRenk),
-                              border: InputBorder.none),
-                        ),
+                      child: TextFormField(
+                        decoration: const InputDecoration(
+                            hintText: 'Başlık...',
+                            hintStyle: TextStyle(color: Sabitler.anaRenk),
+                            border: InputBorder.none),
                       ),
                     ),
                   ),
@@ -66,9 +62,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                     height: 10,
                   ),
                   Stack(
-
                     children: [
-
                       Container(
                         height: 300,
                         decoration: BoxDecoration(
@@ -92,27 +86,27 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                         left: 10,
                         bottom: 10,
                         child: IconButton(
-
-                            onPressed: (){}, icon: Icon(Icons.add_a_photo,color: Sabitler.anaRenk,)),
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.add_a_photo,
+                              color: Sabitler.anaRenk,
+                            )),
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        child: DropDown(),
-                      ),
-
+                      const DropDown(),
                       TextButton(
                         style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Sabitler.anaRenk)),
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Yayınla',
                           style: TextStyle(color: Colors.white),
                         ),

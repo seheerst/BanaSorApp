@@ -17,15 +17,14 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _userNameTextController = TextEditingController();
 
   late FirebaseAuth auth;
 
   @override
   void initState() {
-
     super.initState();
     auth = FirebaseAuth.instance;
   }
@@ -58,7 +57,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       children: [
                         loginTextField(
                             'Kullanıcı Adı', false, _userNameTextController),
-                        SizedBox(
+                        const SizedBox(
                           height: 15,
                         ),
                         loginTextField('E-mail', false, _emailTextController),
@@ -68,13 +67,22 @@ class _SignInScreenState extends State<SignInScreen> {
 
                         loginTextField(
                             'Password', true, _passwordTextController),
-                        SizedBox(height: 15,),
-                        fireBaseUIButton(context,'Kayıt Ol',(){
-                          FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailTextController.text, password: _passwordTextController.text).then((value) {
-                            print("Created New Account");
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=> LoginScreen()));
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        fireBaseUIButton(context, 'Kayıt Ol', () {
+                          FirebaseAuth.instance
+                              .createUserWithEmailAndPassword(
+                                  email: _emailTextController.text,
+                                  password: _passwordTextController.text)
+                              .then((value) {
+                            debugPrint("Created New Account");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginScreen()));
                           }).onError((error, stackTrace) {
-                            print("Error ${error.toString()}");
+                            debugPrint("Error ${error.toString()}");
                           });
                         }),
                         TextButton(
@@ -112,6 +120,4 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-
-
 }

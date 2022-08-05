@@ -17,6 +17,7 @@ class Anasayfa extends StatefulWidget {
 
 class _AnasayfaState extends State<Anasayfa>
     with SingleTickerProviderStateMixin {
+  // ignore: prefer_typing_uninitialized_variables
   var tabController;
 
   @override
@@ -54,7 +55,7 @@ class _AnasayfaState extends State<Anasayfa>
           backgroundColor: Sabitler.anaRenk,
           bottom: tabBarWidget(),
         ),
-        drawer: DrawerMenu(),
+        drawer: const DrawerMenu(),
         body: TabBarView(
           controller: tabController,
           children: const [
@@ -67,8 +68,8 @@ class _AnasayfaState extends State<Anasayfa>
         floatingActionButton: FloatingActionButton(
           backgroundColor: Sabitler.anaRenk,
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => AddEntryScreen()));
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const AddEntryScreen()));
           },
           child: const Icon(Icons.add),
         ),
@@ -77,9 +78,7 @@ class _AnasayfaState extends State<Anasayfa>
   }
 
   TabBar tabBarWidget() {
-    return TabBar(
-        controller: tabController,
-        tabs: const [
+    return TabBar(controller: tabController, tabs: const [
       Tab(
         child: Text(
           'Trendler',
@@ -107,4 +106,3 @@ class _AnasayfaState extends State<Anasayfa>
     ]);
   }
 }
-
