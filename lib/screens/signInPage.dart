@@ -17,6 +17,8 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+
+
   final TextEditingController _passwordTextController = TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   final TextEditingController _userNameTextController = TextEditingController();
@@ -86,7 +88,9 @@ class _SignInScreenState extends State<SignInScreen> {
                           });
                         }),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginScreen()));
+                            },
                             child: const Text(
                               'Hesabınız Var Mı? Giriş Yapın',
                               style: TextStyle(
@@ -120,4 +124,6 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
+
+  yazdir() async {}
 }

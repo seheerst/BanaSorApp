@@ -1,9 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api, duplicate_ignore
+
 import 'package:bana_sor_app/screens/signInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:bana_sor_app/screens/anasayfa.dart';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../widgets/TextField.dart';
 import '../widgets/login_siginButton.dart';
@@ -53,13 +57,22 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: const EdgeInsets.only(top: 20.0),
                     child: Column(
                       children: [
-                        loginTextField('E-mail', false, _emailTextController),
+                        loginTextField(
+                          'E-mail',
+                          false,
+                          _emailTextController,
+                        ),
                         const SizedBox(
                           height: 15,
                         ),
                         loginTextField('Şifre', true, _passwordTextController),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const ResetPassword()));
+                          },
                           child: const Align(
                               alignment: Alignment.topLeft,
                               child: Text(
@@ -74,7 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   email: _emailTextController.text,
                                   password: _passwordTextController.text)
                               .then((value) {
-                            debugPrint("Created New Account");
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -102,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
                                       Sabitler.ikinciRenk)),
-                              onPressed: () {},
+                              onPressed: () {googleIleGiris();},
                               icon: const Icon(
                                 FontAwesomeIcons.google,
                                 color: Sabitler.loginArka,
@@ -121,6 +133,70 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  void googleIleGiris() async{
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+     await FirebaseAuth.instance.signInWithCredential(credential).then((value){
+       Navigator.push(context, MaterialPageRoute(builder: (context)=> const Anasayfa()));
+     });
+  }
+}
+
+class ResetPassword extends StatefulWidget {
+  const ResetPassword({Key? key}) : super(key: key);
+
+  @override
+  _ResetPasswordState createState() => _ResetPasswordState();
+}
+
+class _ResetPasswordState extends State<ResetPassword> {
+  late String _email;
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Column(
+          children: [
+            Center(
+              child: Container(
+                padding: const EdgeInsets.only(left: 25, right: 25,top: 30),
+                height: 120,
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                      hintText: 'E-mail',
+                      hintStyle:
+                          TextStyle(fontSize: 25, color: Sabitler.anaRenk)),
+                  onChanged: (value){
+                    setState(() {
+                      _email =value;
+                    });
+                  },
+                ),
+              ),
+            ),
+            const SizedBox(height: 20,),
+            TextButton(
+                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Sabitler.anaRenk)),
+                onPressed: (){
+                  FirebaseAuth.instance.sendPasswordResetEmail(email: _email);
+                  Navigator.of(context).pop();
+                }, child: const Text('E-posta gönder',style: TextStyle(fontSize: 22,color: Colors.white),))
+          ],
+        ),
       ),
     );
   }
