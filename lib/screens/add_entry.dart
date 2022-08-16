@@ -1,5 +1,7 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:bana_sor_app/widgets/dropDown.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'anasayfa.dart';
@@ -12,6 +14,12 @@ class AddEntryScreen extends StatefulWidget {
 }
 
 class _AddEntryScreenState extends State<AddEntryScreen> {
+
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  final TextEditingController _baslikController = TextEditingController();
+  final TextEditingController _icerikController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -48,6 +56,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(3.0),
                       child: TextFormField(
+                        controller: _baslikController,
                         decoration: const InputDecoration(
                             hintText: 'Başlık...',
                             hintStyle: TextStyle(color: Sabitler.anaRenk),
@@ -74,6 +83,7 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: TextFormField(
+                            controller: _icerikController,
                             maxLines: 12,
                             decoration: const InputDecoration(
                                 hintText: 'Bugün ne düşünüyorsun?',
@@ -105,7 +115,9 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                         style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Sabitler.anaRenk)),
-                        onPressed: () {},
+                        onPressed: () {
+                          yaziEkle();
+                        },
                         child: const Text(
                           'Yayınla',
                           style: TextStyle(color: Colors.white),
@@ -120,5 +132,16 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
         ),
       ),
     );
+  }
+
+  yaziEkle() {
+    FirebaseFirestore.instance
+        .collection('gonderiler')
+        .doc(_baslikController.text)
+        .set({
+      'baslik': _baslikController.text,
+      'icerik': _icerikController.text,
+      'kullaniciid': auth.currentUser?.uid
+    }).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => const Anasayfa())));
   }
 }
