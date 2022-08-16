@@ -2,11 +2,12 @@ import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:bana_sor_app/screens/kategori.dart';
 import 'package:bana_sor_app/screens/trending.dart';
 import 'package:bana_sor_app/screens/yeniler.dart';
+
 import 'package:flutter/material.dart';
 
 import '../widgets/DrawerMenu.dart';
 import 'add_entry.dart';
-import 'gundem.dart';
+
 
 class Anasayfa extends StatefulWidget {
   const Anasayfa({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _AnasayfaState extends State<Anasayfa>
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -58,18 +59,17 @@ class _AnasayfaState extends State<Anasayfa>
         drawer: const DrawerMenu(),
         body: TabBarView(
           controller: tabController,
-          children: const [
+          children: [
             TrendScreen(),
-            YeniScreen(),
-            GundemScreen(),
-            KategoriScreen()
+           const YeniScreen(),
+            const KategoriScreen()
           ],
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Sabitler.anaRenk,
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const AddEntryScreen()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AddEntryScreen()));
           },
           child: const Icon(Icons.add),
         ),
@@ -93,12 +93,6 @@ class _AnasayfaState extends State<Anasayfa>
       ),
       Tab(
         child: Text(
-          'Gündem',
-          style: TextStyle(color: Colors.white),
-        ),
-      ),
-      Tab(
-        child: Text(
           'Kategoriler',
           style: TextStyle(color: Colors.white, fontSize: 13),
         ),
@@ -106,3 +100,4 @@ class _AnasayfaState extends State<Anasayfa>
     ]);
   }
 }
+
