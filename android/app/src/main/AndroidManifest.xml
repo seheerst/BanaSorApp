@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bana_sor_app">
+
    <application
         android:label="bana_sor_app"
         android:name="${applicationName}"

@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "89826584000-7kddimgicrij0cqpkbe5p93n9kj6c68p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bana_sor_app",
+            "certificate_hash": "078278aaeea2f76b620658d6603bec3adb72dbb5"
+          }
+        },
+        {
           "client_id": "89826584000-qgfhklvditm9g41vn1ublvqbc81oifr5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "89826584000-qgfhklvditm9g41vn1ublvqbc81oifr5.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "89826584000-mo1bp78tjlsn1n80peooohe06mo9fjm0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.banaSorApp"
+              }
             }
           ]
         }
