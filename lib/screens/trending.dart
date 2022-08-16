@@ -1,66 +1,25 @@
-import 'package:bana_sor_app/constants/sabitler.dart';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:like_button/like_button.dart';
 
-class TrendScreen extends StatelessWidget {
-  const TrendScreen({Key? key}) : super(key: key);
 
+import '../widgets/GonderiGetir.dart';
+
+class TrendScreen extends StatefulWidget {
+  TrendScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TrendScreen> createState() => _TrendScreenState();
+}
+
+class _TrendScreenState extends State<TrendScreen> {
   @override
   Widget build(BuildContext context) {
     // ignore: avoid_unnecessary_containers
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                border: Border.all(width: 0.5, color: Colors.black38)),
-            width: MediaQuery.of(context).size.width - 80,
-            child: Column(
-              children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: 250,
-                  child: const Text(''),
-                ),
-                const Divider(),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Row(
-                    children: [
-                      const LikeButton(
-                        bubblesColor: BubblesColor(
-                            dotPrimaryColor: Sabitler.anaRenk,
-                            dotSecondaryColor: Sabitler.ikinciRenk),
-                        circleColor: CircleColor(
-                            start: Sabitler.anaRenk, end: Sabitler.ikinciRenk),
-                        size: 40,
-                        likeCount: 300,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.comment,
-                              color: Colors.black45,
-                              size: 40,
-                            )),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.share),
-                        color: Colors.black45,
-                        iconSize: 40,
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
+    return Scaffold(
+      body: GonderiGetir(),
     );
   }
 }
+
+
