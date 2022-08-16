@@ -1,4 +1,5 @@
 import 'package:bana_sor_app/screens/splash_screen.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,6 +19,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'BANA SOR APP', home: const SplashScreen());
+    return const MaterialApp(title: 'BANA SOR APP', home: SplashScreen());
   }
 }

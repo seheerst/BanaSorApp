@@ -66,6 +66,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '89826584000',
     projectId: 'banasorapp-23dea',
     storageBucket: 'banasorapp-23dea.appspot.com',
+    androidClientId: '89826584000-7kddimgicrij0cqpkbe5p93n9kj6c68p.apps.googleusercontent.com',
     iosClientId: '89826584000-mo1bp78tjlsn1n80peooohe06mo9fjm0.apps.googleusercontent.com',
     iosBundleId: 'com.example.banaSorApp',
   );
@@ -76,6 +77,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '89826584000',
     projectId: 'banasorapp-23dea',
     storageBucket: 'banasorapp-23dea.appspot.com',
+    androidClientId: '89826584000-7kddimgicrij0cqpkbe5p93n9kj6c68p.apps.googleusercontent.com',
     iosClientId: '89826584000-mo1bp78tjlsn1n80peooohe06mo9fjm0.apps.googleusercontent.com',
     iosBundleId: 'com.example.banaSorApp',
   );
