@@ -1,9 +1,14 @@
+
+// ignore_for_file: file_names, non_constant_identifier_names, library_private_types_in_public_api
+
 import 'package:bana_sor_app/screens/LoginPage.dart';
 import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
-import '../constants/sabitler.dart';
+import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../screens/Profile.dart';
 
 class DrawerMenu extends StatefulWidget {
@@ -16,22 +21,61 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  var kullnaniciEmail = '';
+  var kullaniciAdi = '';
+
+  BilgiGetir(){
+
+    _firestore.collection('Users').doc('Users/65Qu6bcrdXeFWPwh8TCijdBpCcn2').get().then((gelenDeger) {
+      setState(() {
+        kullnaniciEmail = gelenDeger.data()!['Mail'];
+        kullaniciAdi=  gelenDeger.data()!['kullaniciAdi'];
+        debugPrint(kullnaniciEmail);
+      });
+    });
+  }
+   String? indirmeBaglantisi;
+
+  /*@override
+  void initState() {
+    WidgetsBinding.instance.addPersistentFrameCallback((_) => baglantiAl());
+    super.initState();
+  }
+*/
+  FirebaseAuth auth = FirebaseAuth.instance;
+
+  /*baglantiAl() async {
+    String baglanti = await FirebaseStorage.instance
+        .ref()
+        .child('ProfilResimleri')
+        .child(auth.currentUser!.uid)
+        .child('pp.jpg').getDownloadURL();
+
+    setState(() {
+      indirmeBaglantisi = baglanti;
+    });
+
+  }*/
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      width: 400,
       child: ListView(
         children: [
           DrawerHeader(
-            decoration: const BoxDecoration(color: Sabitler.anaRenk),
+
             child: Row(
-              children: const [
-                Icon(
-                  Icons.person,
-                  size: 110,
-                  color: Colors.white,
-                ),
-                Text('\n\nKullanıcı@gmail.com\nKulanıcıAdı')
-              ],
+              children:  [
+                ClipOval(
+                    child: Image.network(indirmeBaglantisi ??
+                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',width: 100, height: 100,)),
+                const Expanded(
+                  child: KullaniciBilgileri(),
+                )],
             ),
           ),
           ListTile(
@@ -58,13 +102,15 @@ class _DrawerMenuState extends State<DrawerMenu> {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Çıkış'),
-            onTap: () {
+            onTap: () async {
+
               FirebaseAuth.instance.signOut().then((value) {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const LoginScreen()));
               });
+              await GoogleSignIn().disconnect();
             },
           ),
         ],
@@ -72,3 +118,53 @@ class _DrawerMenuState extends State<DrawerMenu> {
     );
   }
 }
+
+class KullaniciBilgileri extends StatefulWidget {
+  const KullaniciBilgileri({Key? key}) : super(key: key);
+
+  @override
+  _KullaniciBilgileriState createState() => _KullaniciBilgileriState();
+}
+
+class _KullaniciBilgileriState extends State<KullaniciBilgileri> {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  @override
+  Widget build(BuildContext context) {
+    Query gonderi = FirebaseFirestore.instance
+        .collection('Users')
+        .where('kullaniciid', isEqualTo: auth.currentUser!.uid);
+
+    return StreamBuilder<QuerySnapshot>(
+      stream: gonderi.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return const Text('Something went wrong');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Text("Loading");
+        }
+
+        return ListView(
+          children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            Map<String, dynamic> data =
+            document.data()! as Map<String, dynamic>;
+            return Padding(
+              padding: const EdgeInsets.only(top:45.0),
+              child: Column(
+                children: [
+                  ListTile(
+                    title: Text(data['mail']),
+                    subtitle: Text(data['kullaniciAdi']),
+                  ),
+
+                ],
+              ),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+}
+
