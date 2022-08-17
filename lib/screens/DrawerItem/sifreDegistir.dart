@@ -17,14 +17,12 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
   final _formKey = GlobalKey<FormState>();
   var newPassword = '';
   final newPasswordController = TextEditingController();
-
+  final currentUser = FirebaseAuth.instance.currentUser;
   @override
   void dispose() {
     newPasswordController.dispose();
     super.dispose();
   }
-
-  final currentUser = FirebaseAuth.instance.currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +35,35 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
             key: _formKey,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-            TextFormField(
-            controller: newPasswordController,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Lütfen Şifre Giriniz';
-              }
-              return null;
-            },
-            obscureText: true,
-            decoration: const InputDecoration(
-              hintText: 'Yeni Şifreniz',
-              hintStyle: TextStyle(fontSize: 20, color: Sabitler.anaRenk),
-            ),
-          ),
+              TextFormField(
+                controller: newPasswordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  hintText: 'Yeni Şifreniz',
+                  hintStyle: TextStyle(fontSize: 20, color: Sabitler.anaRenk),
+                ),
+              ),
               ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(Sabitler.anaRenk)),
-                  onPressed: () {
+                  onPressed: () async {
+                    changePassword();
+                    /* var currentstt = _formKey.currentState;
+                    if(currentstt != null){
+                      if(currentstt.validate()){
+                        setState(() {
+                          newPassword = newPasswordController.text;
+                        });
+                        changePassword();
+                      }
+                    }
                     if (_formKey.currentState!.validate()) {
                       setState(() {
                         newPassword = newPasswordController.text;
                       });
                       changePassword();
-                    }
+                    }*/
                   },
                   child: const Text(
                     'Şifremi Güncelle',
@@ -74,31 +76,20 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
     );
   }
 
-  Widget myTextField(String baslik) {
-    return TextFormField(
-      controller: newPasswordController,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'Yeni Şifre';
-        }
-        return null;
-      },
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: baslik,
-        hintStyle: const TextStyle(fontSize: 20, color: Sabitler.anaRenk),
-      ),
-    );
-  }
-
   changePassword() async {
     try {
-      await currentUser!.updatePassword(newPassword);
+      FirebaseAuth.instance.currentUser
+          ?.updatePassword(newPasswordController.text);
       FirebaseAuth.instance.signOut();
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginScreen()));
+      Navigator.pushReplacement(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
 
-    // ignore: empty_catches
-    } catch (error) {}
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Sabitler.anaRenk,
+        content: Text('Şifreniz Güncellendi.. Lütfen Tekrar Giriş Yapın'),
+      ));
+    } catch (e) {
+      print('hataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' + e.toString());
+    }
   }
 }
