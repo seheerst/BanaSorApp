@@ -66,6 +66,7 @@ class _AnasayfaState extends State<Anasayfa>
           ],
         ),
         floatingActionButton: FloatingActionButton(
+          heroTag: null,
           backgroundColor: Sabitler.anaRenk,
           onPressed: () {
             Navigator.of(context).push(

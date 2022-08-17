@@ -77,6 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         backgroundColor: Sabitler.anaRenk,
         onPressed: () {
           Navigator.of(context)
