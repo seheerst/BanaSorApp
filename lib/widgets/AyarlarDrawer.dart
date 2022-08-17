@@ -1,10 +1,12 @@
 // ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
 
 import 'package:bana_sor_app/constants/sabitler.dart';
+import 'package:bana_sor_app/screens/DrawerItem/kisiselBilgiler.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/sifreDegistir.dart';
+import '../screens/DrawerItem/iletisim.dart';
+import '../screens/DrawerItem/sifreDegistir.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key}) : super(key: key);
@@ -31,8 +33,9 @@ class _AppDrawerState extends State<AppDrawer> {
         body: ListView(
           children: [
 
-            ListTileWidget('Kişisel Bilgiler', () {}, Icons.person,),
-            ListTileWidget('e-mail adresimi değiştir', () {}, Icons.mail),
+            ListTileWidget('Kişisel Bilgiler', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> KisiselBilgilerScreen()));
+            }, Icons.person,),
             ListTileWidget('Şifremi değiştir', () {
               Navigator.push(
                   context,
@@ -40,7 +43,9 @@ class _AppDrawerState extends State<AppDrawer> {
                       builder: (context) => const SifreDegistirScreen()));
             }, Icons.lock),
             ListTileWidget('Kullanım Koşulları', () {}, Icons.book ),
-            ListTileWidget('İletişim', () {}, Icons.phone),
+            ListTileWidget('İletişim', () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> IletisimScreen()));
+            }, Icons.phone),
             ListTileWidget('Gizlilik Politikası', () {}, Icons.security),
           ],
         ));
