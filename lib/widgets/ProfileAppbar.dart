@@ -5,9 +5,11 @@ import 'dart:io';
 import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 class ProfileAppbar extends StatefulWidget {
@@ -20,11 +22,11 @@ class ProfileAppbar extends StatefulWidget {
 class _ProfileAppbarState extends State<ProfileAppbar> {
 
 
-  /*void initState() {
-    WidgetsBinding.instance.addPersistentFrameCallback((_) => baglantiAl());
+  void initState() {
+    baglantiAl();
     super.initState();
   }
-*/
+
   @override
   Widget build(BuildContext context) {
 
@@ -69,7 +71,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                       children: [
                                         TextButton.icon(
                                             onPressed: () {
-                                             // kameradanYukle();
+                                              kameradanYukle();
                                             },
                                             icon: const Icon(
                                               Icons.camera_alt,
@@ -82,7 +84,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                             )),
                                         TextButton.icon(
                                             onPressed: () {
-                                             // galeridenYukle();
+                                              galeridenYukle();
                                             },
                                             icon: const Icon(
                                               Icons.photo_library_rounded,
@@ -200,19 +202,26 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
 
 
 
-  /* baglantiAl() async {
-    String baglanti = await FirebaseStorage.instance
+
+  baglantiAl() async {
+    Reference baglanti = await FirebaseStorage.instance
         .ref()
         .child('ProfilResimleri')
         .child(auth.currentUser!.uid)
-        .child('pp.jpg').getDownloadURL();
+        .child('pp.jpg');
 
+    String deneme = await (await baglanti).getDownloadURL();
+
+    //Future<String> deneme2 = baglanti.getDownloadURL().whenComplete(() {
+
+
+    //});
     setState(() {
-      indirmeBaglantisi = baglanti;
+      indirmeBaglantisi = deneme;
     });
 
-  }
 
+  }
   kameradanYukle() async {
     XFile? alinanDosya =
         await ImagePicker().pickImage(source: ImageSource.camera);
@@ -250,7 +259,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
     });
   }
 
-*/
+
 }
 
 

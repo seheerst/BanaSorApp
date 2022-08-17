@@ -1,9 +1,9 @@
-
 // ignore_for_file: file_names, non_constant_identifier_names, library_private_types_in_public_api
 
 import 'package:bana_sor_app/screens/LoginPage.dart';
 import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -21,44 +21,55 @@ class DrawerMenu extends StatefulWidget {
 }
 
 class _DrawerMenuState extends State<DrawerMenu> {
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   var kullnaniciEmail = '';
   var kullaniciAdi = '';
 
-  BilgiGetir(){
-
-    _firestore.collection('Users').doc('Users/65Qu6bcrdXeFWPwh8TCijdBpCcn2').get().then((gelenDeger) {
+  BilgiGetir() {
+    _firestore
+        .collection('Users')
+        .doc('Users/65Qu6bcrdXeFWPwh8TCijdBpCcn2')
+        .get()
+        .then((gelenDeger) {
       setState(() {
         kullnaniciEmail = gelenDeger.data()!['Mail'];
-        kullaniciAdi=  gelenDeger.data()!['kullaniciAdi'];
+        kullaniciAdi = gelenDeger.data()!['kullaniciAdi'];
         debugPrint(kullnaniciEmail);
       });
     });
   }
-   String? indirmeBaglantisi;
 
-  /*@override
+  String? indirmeBaglantisi;
+
+  @override
   void initState() {
-    WidgetsBinding.instance.addPersistentFrameCallback((_) => baglantiAl());
+    baglantiAl();
+    //WidgetsBinding.instance.addPersistentFrameCallback((_) => baglantiAl());
     super.initState();
   }
-*/
+
   FirebaseAuth auth = FirebaseAuth.instance;
 
-  /*baglantiAl() async {
-    String baglanti = await FirebaseStorage.instance
+  baglantiAl() async {
+    Reference baglanti = await FirebaseStorage.instance
         .ref()
         .child('ProfilResimleri')
         .child(auth.currentUser!.uid)
-        .child('pp.jpg').getDownloadURL();
+        .child('pp.jpg');
 
-    setState(() {
-      indirmeBaglantisi = baglanti;
+        String deneme = await (await baglanti).getDownloadURL();
+
+        //Future<String> deneme2 = baglanti.getDownloadURL().whenComplete(() {
+
+
+        //});
+     setState(() {
+       indirmeBaglantisi = deneme;
     });
 
-  }*/
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,15 +78,19 @@ class _DrawerMenuState extends State<DrawerMenu> {
       child: ListView(
         children: [
           DrawerHeader(
-
             child: Row(
-              children:  [
+              children: [
                 ClipOval(
-                    child: Image.network(indirmeBaglantisi ??
-                        'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',width: 100, height: 100,)),
+                    child: Image.network(
+                  indirmeBaglantisi ??
+                      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                  width: 100,
+                  height: 100,
+                )),
                 const Expanded(
                   child: KullaniciBilgileri(),
-                )],
+                )
+              ],
             ),
           ),
           ListTile(
@@ -103,7 +118,6 @@ class _DrawerMenuState extends State<DrawerMenu> {
             leading: const Icon(Icons.exit_to_app),
             title: const Text('Çıkış'),
             onTap: () async {
-
               FirebaseAuth.instance.signOut().then((value) {
                 Navigator.push(
                     context,
@@ -148,16 +162,21 @@ class _KullaniciBilgileriState extends State<KullaniciBilgileri> {
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
-            document.data()! as Map<String, dynamic>;
+                document.data()! as Map<String, dynamic>;
             return Padding(
-              padding: const EdgeInsets.only(top:45.0),
+              padding: const EdgeInsets.only(top: 45.0),
               child: Column(
                 children: [
                   ListTile(
-                    title: Text(data['mail']),
-                    subtitle: Text(data['kullaniciAdi']),
+                    title: Text(
+                      data['mail'],
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    subtitle: Text(
+                      data['kullaniciAdi'],
+                      style: TextStyle(fontSize: 15),
+                    ),
                   ),
-
                 ],
               ),
             );
@@ -167,4 +186,3 @@ class _KullaniciBilgileriState extends State<KullaniciBilgileri> {
     );
   }
 }
-
