@@ -15,8 +15,7 @@ class GonderiGetir extends StatefulWidget {
 
 class _GonderiGetirState extends State<GonderiGetir> {
   final Stream<QuerySnapshot> _blogYazilari =
-  FirebaseFirestore.instance.collection('gonderiler').snapshots();
-
+      FirebaseFirestore.instance.collection('gonderiler').snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -34,40 +33,82 @@ class _GonderiGetirState extends State<GonderiGetir> {
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
-            document.data()! as Map<String, dynamic>;
+                document.data()! as Map<String, dynamic>;
             return Padding(
               padding: const EdgeInsets.all(15.0),
               child: Column(
                 children: [
-                  Row(children: [
-                    ClipOval(child: Image.network( 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',width: 50,height: 50,),),
-                  const SizedBox(width: 10,),
-                    const Text('Kullanıcı Adı')
-                  ],),
+                  Row(
+                    children: [
+                      ClipOval(
+                        child: Image.network(
+                          'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text('Kullanıcı Adı')
+                    ],
+                  ),
                   Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          border: Border.all(width: 0.5, color: Colors.black38)),
+                          border:
+                              Border.all(width: 0.5, color: Colors.black38)),
                       width: MediaQuery.of(context).size.width - 80,
                       child: Column(
                         children: [
                           SizedBox(
                             width: MediaQuery.of(context).size.width,
-
                             child: ListTile(
                               contentPadding: const EdgeInsets.all(25),
-                              title: Text(data['baslik'], style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),
-                              subtitle: Text(data['icerik'],style: const TextStyle(color: Colors.black,fontSize: 18),),
+                              title: Text(
+                                data['baslik'],
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 24),
+                              ),
+                              subtitle: Text(
+                                data['icerik'],
+                                style: const TextStyle(
+                                    color: Colors.black, fontSize: 18),
+                              ),
                             ),
                           ),
+                          Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 10, right: 10),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.comment,
+                                    color: Sabitler.anaRenk,
+                                    size: 30,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      height: 30,
+                                      child: TextFormField(
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintText: '   yorum yap..',
+                                        ),
 
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(onPressed: (){}, child: Text('yayınla'))
+                                ],
+                              )),
+                          Divider(),
                           Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: Row(
                               children: [
                                 const LikeButton(
-
                                   bubblesColor: BubblesColor(
                                       dotPrimaryColor: Sabitler.anaRenk,
                                       dotSecondaryColor: Sabitler.ikinciRenk),
@@ -76,17 +117,6 @@ class _GonderiGetirState extends State<GonderiGetir> {
                                       end: Sabitler.ikinciRenk),
                                   size: 40,
                                   likeCount: 300,
-
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10, right: 10),
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.comment,
-                                        color: Sabitler.anaRenk,
-                                        size: 40,
-                                      )),
                                 ),
                                 IconButton(
                                   onPressed: () {},
@@ -96,7 +126,7 @@ class _GonderiGetirState extends State<GonderiGetir> {
                                 )
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -109,4 +139,6 @@ class _GonderiGetirState extends State<GonderiGetir> {
       },
     );
   }
+
+
 }
