@@ -1,5 +1,4 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
-import 'package:bana_sor_app/widgets/dropDown.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +18,29 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
 
   final TextEditingController _baslikController = TextEditingController();
   final TextEditingController _icerikController = TextEditingController();
+
+  String dropDownValue = 'Kategori';
+  int index = 0;
+  String kategori = '';
+  var kategoriListesi = [
+    'Kategori',
+    'İş',
+    'İnanç',
+    'Günlük Hayat',
+    'Aşk',
+    'Spor',
+    'Müzik',
+    'siyaset',
+    'Teknoloji',
+    'Yemek',
+    'Diziler',
+    'Sağlık',
+    'Bilim',
+    'Felsefe',
+    'Hayvanlar',
+    'Magazin',
+    'Moda'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +132,24 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const DropDown(),
+                     DropdownButton(
+                        value: dropDownValue,
+                        icon: const Icon(Icons.arrow_drop_down_outlined),
+                        items: kategoriListesi.map((String value) {
+                          return DropdownMenuItem(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList(),
+                        onChanged: (String? newValue) {
+
+                          setState(() {
+                            dropDownValue = newValue!;
+                            kategori = newValue.toString();
+                            print(kategori);
+                          });
+                        },
+                      ),
                       TextButton(
                         style: ButtonStyle(
                             backgroundColor:
@@ -141,7 +180,8 @@ class _AddEntryScreenState extends State<AddEntryScreen> {
         .set({
       'baslik': _baslikController.text,
       'icerik': _icerikController.text,
-      'kullaniciid': auth.currentUser?.uid
+      'kullaniciid': auth.currentUser?.uid,
+      'kategori' : kategori,
     }).whenComplete(() => Navigator.push(context, MaterialPageRoute(builder: (context) => const Anasayfa())));
   }
 }
