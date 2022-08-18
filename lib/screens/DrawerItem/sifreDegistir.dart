@@ -12,6 +12,7 @@ class SifreDegistirScreen extends StatefulWidget {
   @override
   _SifreDegistirScreenState createState() => _SifreDegistirScreenState();
 }
+String ase ='65Qu6bcrdXeFWPwh8TCijdBpCcn2';
 
 class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
   final _formKey = GlobalKey<FormState>();
@@ -28,6 +29,11 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          iconTheme: const IconThemeData(color: Sabitler.anaRenk),
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: true,
+        ),
         body: Container(
           padding: const EdgeInsets.only(left: 20, right: 20),
           height: 300,
@@ -49,21 +55,7 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
                           MaterialStateProperty.all(Sabitler.anaRenk)),
                   onPressed: () async {
                     changePassword();
-                    /* var currentstt = _formKey.currentState;
-                    if(currentstt != null){
-                      if(currentstt.validate()){
-                        setState(() {
-                          newPassword = newPasswordController.text;
-                        });
-                        changePassword();
-                      }
-                    }
-                    if (_formKey.currentState!.validate()) {
-                      setState(() {
-                        newPassword = newPasswordController.text;
-                      });
-                      changePassword();
-                    }*/
+
                   },
                   child: const Text(
                     'Şifremi Güncelle',
@@ -78,16 +70,25 @@ class _SifreDegistirScreenState extends State<SifreDegistirScreen> {
 
   changePassword() async {
     try {
+
+     setState(() {
+       newPassword= newPasswordController.text;
+     });
+
       FirebaseAuth.instance.currentUser
-          ?.updatePassword(newPasswordController.text);
-      FirebaseAuth.instance.signOut();
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+          ?.updatePassword(newPassword).whenComplete(() {
+        FirebaseAuth.instance.signOut();
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
+      });
+
 
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         backgroundColor: Sabitler.anaRenk,
         content: Text('Şifreniz Güncellendi.. Lütfen Tekrar Giriş Yapın'),
       ));
+
+
     } catch (e) {
       print('hataaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa' + e.toString());
     }

@@ -1,24 +1,25 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class EmailDegistirScreen extends StatefulWidget {
-  const EmailDegistirScreen({Key? key}) : super(key: key);
+class IsimDegistirScreen extends StatefulWidget {
+  const IsimDegistirScreen({Key? key}) : super(key: key);
 
   @override
-  _EmailDegistirScreenState createState() => _EmailDegistirScreenState();
+  _IsimDegistirScreenState createState() => _IsimDegistirScreenState();
 }
 
-class _EmailDegistirScreenState extends State<EmailDegistirScreen> {
+class _IsimDegistirScreenState extends State<IsimDegistirScreen> {
   final _formKey = GlobalKey<FormState>();
   var newmail = '';
-  final newEmailController = TextEditingController();
+  final _newIsimController = TextEditingController();
   final currentUser = FirebaseAuth.instance.currentUser;
   @override
   void dispose() {
-    newEmailController.dispose();
+    _newIsimController.dispose();
     super.dispose();
   }
 
@@ -39,21 +40,21 @@ class _EmailDegistirScreenState extends State<EmailDegistirScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               TextFormField(
-                controller: newEmailController,
+                controller: _newIsimController,
                 decoration: const InputDecoration(
-                  hintText: 'Yeni E-Posta',
+                  hintText: 'Yeni Isim Soyisim',
                   hintStyle: TextStyle(fontSize: 20, color: Sabitler.anaRenk),
                 ),
               ),
               ElevatedButton(
                   style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Sabitler.anaRenk)),
+                      MaterialStateProperty.all(Sabitler.anaRenk)),
                   onPressed: () async {
-                    changeEmail();
+                    changeIsim();
                   },
                   child: const Text(
-                    "E-posta'yı Güncelle",
+                    "İsim/Soyisim Güncelle",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ))
             ],
@@ -63,17 +64,16 @@ class _EmailDegistirScreenState extends State<EmailDegistirScreen> {
     );
   }
 
-  changeEmail() async {
-    try {
-      FirebaseAuth.instance.currentUser?.updateEmail(newEmailController.text);
-      debugPrint(currentUser!.email);
+  FirebaseAuth auth = FirebaseAuth.instance;
+  changeIsim() {
+    FirebaseFirestore.instance
+        .collection('Users')
+        .doc(auth.currentUser?.email)
+        .set({
+      'isim': _newIsimController.text,
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        backgroundColor: Sabitler.anaRenk,
-        content: Text('E-mail Adresiniz Başarıyla Güncellendi'),
-      ));
-    } catch (e) {
-      print('hata: $e');
-    }
+    },SetOptions(merge: true)
+    ).whenComplete(() => print('isim Değiştirildi'));
   }
+
 }

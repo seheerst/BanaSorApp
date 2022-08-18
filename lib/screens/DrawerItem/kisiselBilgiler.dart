@@ -1,4 +1,6 @@
 import 'package:bana_sor_app/screens/DrawerItem/emailDegistir.dart';
+import 'package:bana_sor_app/screens/DrawerItem/isimDegistir.dart';
+import 'package:bana_sor_app/screens/DrawerItem/kullaniciAdiDegistir.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +21,8 @@ class _KisiselBilgilerScreenState extends State<KisiselBilgilerScreen> {
     super.initState();
   }
 
+  String isim = '';
+  String kullaniciAdi = '';
   String email = '';
   String telefon = '';
   String dogumGunu = '';
@@ -28,13 +32,15 @@ class _KisiselBilgilerScreenState extends State<KisiselBilgilerScreen> {
   void kullaniciBilgisi() {
     _firestore
         .collection('Users')
-        .doc(auth.currentUser?.uid)
+        .doc(auth.currentUser?.email)
         .get()
         .then((snapshot) {
       setState(() {
         email = snapshot.data()!['mail'];
         telefon = snapshot.data()!['telefon'];
         dogumGunu = snapshot.data()!['dogumGunu'];
+        kullaniciAdi = snapshot.data()!['kullaniciAdi'];
+        isim = snapshot.data()!['isim'];
       });
     });
   }
@@ -56,6 +62,26 @@ class _KisiselBilgilerScreenState extends State<KisiselBilgilerScreen> {
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
+            ListTileWidget('İsim Soyisim', isim, () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => IsimDegistirScreen()));
+            }),
+            Divider(
+              height: 1,
+              color: Colors.black54,
+            ),
+            ListTileWidget('Kullanıcı Adı', kullaniciAdi, () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => KullaniciAdiDegistirScreen()));
+            }),
+            Divider(
+              height: 1,
+              color: Colors.black54,
+            ),
             ListTileWidget('E-posta', email, () {
               Navigator.push(
                   context,
@@ -102,3 +128,4 @@ class _KisiselBilgilerScreenState extends State<KisiselBilgilerScreen> {
     );
   }
 }
+
