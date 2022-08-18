@@ -255,7 +255,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
 
     setState(() {
       indirmeBaglantisi = url;
-      print('asdsadsada555555555 $indirmeBaglantisi');
+      print('profil fotoğrafı: $indirmeBaglantisi');
     });
   }
 
@@ -276,7 +276,7 @@ class _KullaniciBilgileriState extends State<KullaniciBilgileri> {
   Widget build(BuildContext context) {
     Query gonderi = FirebaseFirestore.instance
         .collection('Users')
-        .where('kullaniciid', isEqualTo: auth.currentUser!.uid);
+        .where('mail', isEqualTo: auth.currentUser!.email);
 
     return StreamBuilder<QuerySnapshot>(
       stream: gonderi.snapshots(),
