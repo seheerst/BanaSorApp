@@ -6,7 +6,6 @@ import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -61,7 +60,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                 builder: (BuildContext context) => AlertDialog(
                                   title: const Text('Fotoğraf Ekle'),
                                   content: SizedBox(
-                                    width: 250,
+                                    width: 300,
                                     height: 120,
                                     child: Column(
                                       mainAxisAlignment:
@@ -72,6 +71,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                         TextButton.icon(
                                             onPressed: () {
                                               kameradanYukle();
+                                              savePpFirebase();
                                             },
                                             icon: const Icon(
                                               Icons.camera_alt,
@@ -85,6 +85,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                                         TextButton.icon(
                                             onPressed: () {
                                               galeridenYukle();
+                                              savePpFirebase();
                                             },
                                             icon: const Icon(
                                               Icons.photo_library_rounded,
@@ -106,7 +107,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
           Padding(
             padding: const EdgeInsets.only(left: 25, top: 80),
             child: SizedBox(
-              width: 300,
+              width: 230,
               child: Column(
 
                 children: [
@@ -115,7 +116,7 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
                     padding: const EdgeInsets.only( bottom: 30),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Column(
                           children: const [
@@ -257,6 +258,17 @@ class _ProfileAppbarState extends State<ProfileAppbar> {
       indirmeBaglantisi = url;
       print('profil fotoğrafı: $indirmeBaglantisi');
     });
+  }
+
+  savePpFirebase(){
+    FirebaseFirestore.instance
+        .collection('Users')
+        .doc(auth.currentUser?.email)
+        .set({
+      'profilePhoto': indirmeBaglantisi
+
+    },SetOptions(merge: true)
+    ).whenComplete(() => print('Profil fotoğrafı kaydedildi'));
   }
 
 
