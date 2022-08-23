@@ -5,7 +5,7 @@ import '../constants/sabitler.dart';
 Container loginTextField(
     String text, bool isPasswordType, TextEditingController controller) {
   return Container(
-    height: 70,
+    height: 55,
     width: 400,
     decoration: BoxDecoration(
         color: Sabitler.ikinciRenk, borderRadius: BorderRadius.circular(24)),

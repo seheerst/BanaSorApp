@@ -1,7 +1,7 @@
 // ignore_for_file: file_names, non_constant_identifier_names, library_private_types_in_public_api
 
 import 'package:bana_sor_app/screens/LoginPage.dart';
-import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
+import 'package:bana_sor_app/widgets/settingsDrawer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../screens/Profile.dart';
+import '../screens/profile.dart';
 
 class DrawerMenu extends StatefulWidget {
   const DrawerMenu({
