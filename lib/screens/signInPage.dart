@@ -6,7 +6,7 @@ import 'package:bana_sor_app/constants/sabitler.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../widgets/TextField.dart';
+import '../widgets/textField.dart';
 import '../widgets/login_siginButton.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -46,18 +46,18 @@ class _SignInScreenState extends State<SignInScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Image(image: AssetImage('assets/images/logo1.png')),
+                const Image(image: AssetImage('assets/images/logo1.png'), height: 50,),
                 const SizedBox(
-                  height: 40,
+                  height: 10,
                 ),
                 Container(
-                  height: 720,
-                  width: MediaQuery.of(context).size.width - 150,
+                  height: 620,
+                  width: MediaQuery.of(context).size.width - 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: Sabitler.loginArka),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 20.0, left: 10, right: 10),
                     child: Column(
                       children: [
                         loginTextField(

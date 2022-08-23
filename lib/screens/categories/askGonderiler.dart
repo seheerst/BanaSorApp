@@ -24,7 +24,7 @@ class _AskGonderileriScreenState extends State<AskGonderileriScreen> {
           style: TextStyle(color: Sabitler.anaRenk),
           textAlign: TextAlign.center,
         ),
-        iconTheme: const IconThemeData(color: Sabitler.anaRenk),
+        iconTheme: const IconThemeData(color: Sabitler.anaRenk,),
         backgroundColor: Colors.white,
         automaticallyImplyLeading: true,
       ),

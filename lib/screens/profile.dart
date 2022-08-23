@@ -1,13 +1,13 @@
 // ignore_for_file: library_private_types_in_public_api, non_constant_identifier_names
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
-import 'package:bana_sor_app/widgets/ProfileAppbar.dart';
+import 'package:bana_sor_app/widgets/settingsDrawer.dart';
+import 'package:bana_sor_app/widgets/profileAppbar.dart';
 import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 import '../constants/sabitler.dart';
 import 'add_entry.dart';
-import 'anasayfa.dart';
+import 'homePage.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -65,6 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen>
       ),
       endDrawer: const AppDrawer(),
       body: TabBarView(
+
         controller: tabController,
         children: const [
           KullaniciGonderileri(),
@@ -90,6 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen>
 
   TabBar TabBarim() {
     return TabBar(
+      enableFeedback: true,
       controller: tabController,
       tabs: const [
         Tab(
@@ -134,48 +136,96 @@ class _KullaniciGonderileriState extends State<KullaniciGonderileri> {
         return ListView(
           children: snapshot.data!.docs.map((DocumentSnapshot document) {
             Map<String, dynamic> data =
-                document.data()! as Map<String, dynamic>;
+            document.data()! as Map<String, dynamic>;
             return Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
-                  ListTile(
-                    title: Text(data['baslik']),
-                    subtitle: Text(data['icerik']),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
+
+                  Container(
+
+                    width: MediaQuery.of(context).size.width - 60,
+
+                    child: Column(
                       children: [
-                        const LikeButton(
-                          bubblesColor: BubblesColor(
-                              dotPrimaryColor: Sabitler.anaRenk,
-                              dotSecondaryColor: Sabitler.ikinciRenk),
-                          circleColor: CircleColor(
-                              start: Sabitler.anaRenk,
-                              end: Sabitler.ikinciRenk),
-                          size: 30,
-                          likeCount: 300,
+                        Container(
+                          height: 50,
+                          child: Row(
+                            children: [
+                              ClipOval(
+                                child: Image.network(
+                                  data['ProfilePhoto'],
+                                  width: 40,
+                                  height: 40,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              Row(
+
+                                children: [
+                                  Text('${data['kullaniciAdi']}'),
+                                  SizedBox(width: 310,),
+                                  Text( '${data['gonderiZamani']} , ${data['gonderiSaati']} ')
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
+                        Divider(),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: ListTile(
+
+                            title: Text(
+                              data['baslik'] ,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 18),
+                            ),
+                            subtitle: Text(
+                              data['icerik'],
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 15),
+                            ),
+                          ),
+                        ),
+
                         Padding(
-                          padding: const EdgeInsets.only(left: 10, right: 10),
-                          child: IconButton(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.comment,
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Row(
+                            children: [
+                              const LikeButton(
+                                bubblesColor: BubblesColor(
+                                    dotPrimaryColor: Sabitler.anaRenk,
+                                    dotSecondaryColor: Sabitler.ikinciRenk),
+                                circleColor: CircleColor(
+                                    start: Sabitler.anaRenk,
+                                    end: Sabitler.ikinciRenk),
+                                size: 25,
+                                likeCount: 300,
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: Icon(Icons.comment,size: 25,),
                                 color: Sabitler.anaRenk,
-                                size: 30,
-                              )),
+
+                              ),
+                              IconButton(
+                                onPressed: () {},
+                                icon: const Icon(Icons.share),
+                                color: Sabitler.anaRenk,
+                                iconSize: 25,
+                              )
+
+
+                            ],
+                          ),
                         ),
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.share),
-                          color: Sabitler.anaRenk,
-                          iconSize: 30,
-                        )
+                        Divider(),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             );

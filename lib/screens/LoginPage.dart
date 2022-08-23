@@ -3,13 +3,13 @@
 import 'package:bana_sor_app/screens/signInPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:bana_sor_app/constants/sabitler.dart';
-import 'package:bana_sor_app/screens/anasayfa.dart';
+import 'package:bana_sor_app/screens/homePage.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../widgets/TextField.dart';
+import '../widgets/textField.dart';
 import '../widgets/login_siginButton.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -43,18 +43,18 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Image(image: AssetImage('assets/images/logo1.png')),
+                const Image(image: AssetImage('assets/images/logo1.png'),height: 80,),
                 const SizedBox(
                   height: 40,
                 ),
                 Container(
                   height: 420,
-                  width: MediaQuery.of(context).size.width - 150,
+                  width: MediaQuery.of(context).size.width - 100,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: Sabitler.loginArka),
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 20.0),
+                    padding: const EdgeInsets.only(top: 20.0, left:15, right: 15),
                     child: Column(
                       children: [
                         loginTextField(

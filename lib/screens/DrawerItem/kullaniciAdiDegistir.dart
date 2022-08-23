@@ -1,5 +1,5 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
-import 'package:bana_sor_app/widgets/AyarlarDrawer.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 

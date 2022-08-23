@@ -1,11 +1,11 @@
 import 'package:bana_sor_app/constants/sabitler.dart';
-import 'package:bana_sor_app/screens/kategori.dart';
-import 'package:bana_sor_app/screens/trending.dart';
-import 'package:bana_sor_app/screens/yeniler.dart';
+import 'package:bana_sor_app/screens/categories.dart';
+import 'package:bana_sor_app/screens/trendPosts.dart';
+import 'package:bana_sor_app/screens/todayPosts.dart';
 
 import 'package:flutter/material.dart';
 
-import '../widgets/DrawerMenu.dart';
+import '../widgets/drawerMenu.dart';
 import 'add_entry.dart';
 
 
@@ -82,7 +82,7 @@ class _AnasayfaState extends State<Anasayfa>
     return TabBar(controller: tabController, tabs: const [
       Tab(
         child: Text(
-          'Trendler',
+          'Anasayfa',
           style: TextStyle(color: Colors.white),
         ),
       ),

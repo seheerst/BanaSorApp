@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-import '../widgets/GonderiGetir.dart';
+import '../widgets/gonderiGetir.dart';
 
 class TrendScreen extends StatefulWidget {
   TrendScreen({Key? key}) : super(key: key);
